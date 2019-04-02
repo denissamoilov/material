@@ -60,6 +60,7 @@ class Sidebar extends Component {
                 slug: '/settings',
                 active: false
             },
+            
         ];
 
         const sidebarMenu = sidebarMenuObject.map((item) => {
