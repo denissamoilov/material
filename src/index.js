@@ -7,7 +7,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import Theme from './components/Theme/Theme';
+import Theme from './theme/Theme';
+
+// Load Roboto typeface
+require('typeface-lato');
 
 
 const app = (

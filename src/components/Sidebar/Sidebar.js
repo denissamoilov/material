@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom'
 
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
+import { Drawer, List, Link, ListItem, Hidden } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-
-const sidebarWidth = 300;
 
 const styles = theme => ({
     drawerPaper: {
+        border: 0,
         padding: theme.spacing.unit * 3,
-        width: sidebarWidth,
+        width: theme.sidebar.width,
+    },
+    sidebarLink: {
+        ...theme.sidebar.link,
+    },
+    list: {
+        padding: 0,
+    },
+    listItem: {
+        padding: theme.spacing.unit + 'px 0'
     },
 });
 
@@ -65,27 +69,33 @@ class Sidebar extends Component {
 
         const sidebarMenu = sidebarMenuObject.map((item) => {
             return (
-                <Link key={item.id} component={RouterLink} to={item.slug}>
-                    <Typography variant="button" color='primary'>{item.title}</Typography>
-                </Link>
+                <ListItem key={item.id} className={classes.listItem}>
+                    <Link 
+                        className={classes.sidebarLink} 
+                        component={RouterLink} 
+                        to={item.slug} 
+                        color='primary'
+                        variant='inherit'>
+                            {item.title}
+                    </Link>
+                </ListItem>
             )
         })
 
-        console.log('props: ', this.props)
-
         return (
             <>
-                <CssBaseline />
-                <nav className={classes.sidebar}>
+                <nav>
                     <Hidden smDown>
                         <Drawer
                             classes={{
                                 paper: classes.drawerPaper,
                             }}
                             variant="permanent"
-                            open
+                            open={this.props.open}
                         >
-                            {sidebarMenu}
+                            <List className={classes.list}>
+                                {sidebarMenu}
+                            </List>
                         </Drawer>
                         {/* <div className={classes.sidebar}>
                             {sidebarMenu}
