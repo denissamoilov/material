@@ -3,8 +3,10 @@ import classNames from 'classnames';
 
 import Sidebar from "../Sidebar/Sidebar";
 
-import Paper from "@material-ui/core/Paper";
+import { Paper, IconButton } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import Fullscreen from '@material-ui/icons/Fullscreen';
+import FullscreenExit from '@material-ui/icons/FullscreenExit';
 
 const styles = theme => ({
     content: {
@@ -43,7 +45,9 @@ class Layout extends Component {
     render() {
         const { classes, theme } = this.props;
 
-        console.log('theme: ', theme);
+        const expandIcon = this.state.sidebarCollapsed ? <FullscreenExit /> : <Fullscreen />;
+
+        // console.log('props: ', this.props);
 
         return (
             <>
@@ -55,7 +59,13 @@ class Layout extends Component {
                     className={classNames(classes.content, this.state.sidebarCollapsed && classes.contentExpanded)}
                     sidebarCollapsed={this.state.showSideDrawer}
                     square>
-                    <button onClick={this.sideDrawerClosedHandler}>Click</button>
+                    <IconButton 
+                        color="primary"
+                        aria-label="Open drawer"
+                        onClick={this.sideDrawerClosedHandler}
+                    >
+                        {expandIcon}
+                    </IconButton>
                     {this.props.children}
                 </Paper>
             </>

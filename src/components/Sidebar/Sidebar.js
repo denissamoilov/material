@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link as RouterLink } from 'react-router-dom'
 
-import { Drawer, List, Link, ListItem, Hidden } from '@material-ui/core';
+import { NavLink } from 'react-router-dom'
+
+import { Drawer, List, ListItem, Link, Hidden } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -23,11 +23,19 @@ const styles = theme => ({
     sidebarLink: {
         ...theme.sidebar.link,
     },
+    sidebarLinkActive: {
+        fontWeight: 'bold'
+    },
     list: {
         padding: 0,
     },
     listItem: {
         padding: theme.spacing.unit + 'px 0'
+    },
+    menuItem: {
+        '&:hover, &:focus': {
+            backgroundColor: 'transparent'
+        },
     },
 });
 
@@ -76,18 +84,21 @@ class Sidebar extends Component {
             
         ];
 
-        const sidebarMenu = sidebarMenuObject.map((item) => {
+        const sidebarMenu = sidebarMenuObject.map(item => {
+
             return (
-                <ListItem key={item.id} className={classes.listItem}>
-                    <Link 
-                        className={classes.sidebarLink} 
-                        component={RouterLink} 
-                        to={item.slug} 
-                        color='primary'
-                        variant='inherit'>
+                    <ListItem key={item.id}>
+                        <Link
+                            color='primary'
+                            component={NavLink}
+                            to={item.slug} 
+                            exact
+                            className={classes.sidebarLink}
+                            activeClassName={classes.sidebarLinkActive}
+                        >
                             {item.title}
-                    </Link>
-                </ListItem>
+                        </Link>
+                    </ListItem>
             )
         })
 
