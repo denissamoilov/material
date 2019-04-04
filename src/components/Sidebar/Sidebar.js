@@ -39,91 +39,89 @@ const styles = theme => ({
     },
 });
 
-class Sidebar extends Component {
+const sideBar = (props) => {
 
-    render() {
-        const { classes, theme } = this.props;
+    const { classes, theme } = props;
 
-        const sidebarMenuObject = [
-            {
-                id: 0,
-                title: 'Dashboard',
-                slug: '/',
-                active: false
-            },
-            {
-                id: 1,
-                title: 'Content Manager',
-                slug: '/manager',
-                active: false
-            },
-            {
-                id: 2,
-                title: 'Content Personalization',
-                slug: '/personalization',
-                active: false
-            },
-            {
-                id: 3,
-                title: 'Asset Manager',
-                slug: '/assets',
-                active: false
-            },
-            {
-                id: 4,
-                title: 'Site Manager',
-                slug: '/site-manager',
-                active: false
-            },
-            {
-                id: 5,
-                title: 'Site Settings',
-                slug: '/settings',
-                active: false
-            },
-            
-        ];
+    const sidebarMenuObject = [
+        {
+            id: 0,
+            title: 'Dashboard',
+            slug: '/',
+            active: false
+        },
+        {
+            id: 1,
+            title: 'Content Manager',
+            slug: '/manager',
+            active: false
+        },
+        {
+            id: 2,
+            title: 'Content Personalization',
+            slug: '/personalization',
+            active: false
+        },
+        {
+            id: 3,
+            title: 'Asset Manager',
+            slug: '/assets',
+            active: false
+        },
+        {
+            id: 4,
+            title: 'Site Manager',
+            slug: '/site-manager',
+            active: false
+        },
+        {
+            id: 5,
+            title: 'Site Settings',
+            slug: '/settings',
+            active: false
+        },
+        
+    ];
 
-        const sidebarMenu = sidebarMenuObject.map(item => {
-
-            return (
-                    <ListItem key={item.id}>
-                        <Link
-                            color='primary'
-                            component={NavLink}
-                            to={item.slug} 
-                            exact
-                            className={classes.sidebarLink}
-                            activeClassName={classes.sidebarLinkActive}
-                        >
-                            {item.title}
-                        </Link>
-                    </ListItem>
-            )
-        })
+    const sidebarMenu = sidebarMenuObject.map(item => {
 
         return (
-            <>
-                <nav>
-                    <Hidden smDown>
-                        <Drawer
-                            classes={{
-                                paper: classNames(classes.sidebar, this.props.sidebarCollapsed && classes.sidebarCollapsed)
-                            }}
-                            variant="permanent"
-                        >
-                            <List className={classes.list}>
-                                {sidebarMenu}
-                            </List>
-                        </Drawer>
-                        {/* <div className={classes.sidebar}>
-                            {sidebarMenu}
-                        </div> */}
-                    </Hidden>
-                </nav>
-            </>
+                <ListItem key={item.id}>
+                    <Link
+                        color='primary'
+                        component={NavLink}
+                        to={item.slug} 
+                        exact
+                        className={classes.sidebarLink}
+                        activeClassName={classes.sidebarLinkActive}
+                    >
+                        {item.title}
+                    </Link>
+                </ListItem>
         )
-    }
+    })
+
+    return (
+        <>
+            <nav>
+                <Hidden smDown>
+                    <Drawer
+                        classes={{
+                            paper: classNames(classes.sidebar, props.sidebarCollapsed && classes.sidebarCollapsed)
+                        }}
+                        variant="permanent"
+                    >
+                        <List className={classes.list}>
+                            {sidebarMenu}
+                        </List>
+                    </Drawer>
+                    {/* <div className={classes.sidebar}>
+                        {sidebarMenu}
+                    </div> */}
+                </Hidden>
+            </nav>
+        </>
+    )
 }
 
-export default withStyles(styles, { withTheme: true })(Sidebar);
+export default withStyles(styles, { withTheme: true })(sideBar);
