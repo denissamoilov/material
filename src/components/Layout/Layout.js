@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classNames from 'classnames';
 
 import Sidebar from "../Sidebar/Sidebar";
 
@@ -22,18 +23,21 @@ const styles = theme => ({
         [theme.breakpoints.up('md')]: {
             marginLeft: (theme.sidebar.width + theme.spacing.unit),
         },
-    }
+    },
+    contentExpanded: {
+        marginLeft: theme.spacing.unit * 3
+    },
 });
 
 class Layout extends Component {
     state = {
-        showSideDrawer: false
+        sidebarCollapsed: false
     };
 
     sideDrawerClosedHandler = () => {
-        const sideDrawerState = this.state.showSideDrawer;
+        const showSidebar = this.state.sidebarCollapsed;
 
-        this.setState({ showSideDrawer: !sideDrawerState });
+        this.setState({ sidebarCollapsed: !showSidebar });
     };
 
     render() {
@@ -44,11 +48,12 @@ class Layout extends Component {
         return (
             <>
                 <Sidebar
-                    open={this.state.showSideDrawer}
+                    sidebarCollapsed={this.state.sidebarCollapsed}
                 />
 
                 <Paper 
-                    className={classes.content}
+                    className={classNames(classes.content, this.state.sidebarCollapsed && classes.contentExpanded)}
+                    sidebarCollapsed={this.state.showSideDrawer}
                     square>
                     <button onClick={this.sideDrawerClosedHandler}>Click</button>
                     {this.props.children}

@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link as RouterLink } from 'react-router-dom'
 
 import { Drawer, List, Link, ListItem, Hidden } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-    drawerPaper: {
+    sidebar: {
         border: 0,
         padding: theme.spacing.unit * 3,
+        transform: 'translateX(0)',
         width: theme.sidebar.width,
+        transition: theme.transitions.create('transform', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    sidebarCollapsed: {
+        transform: 'translateX(-' + theme.sidebar.width + 'px)',
     },
     sidebarLink: {
         ...theme.sidebar.link,
@@ -88,10 +97,9 @@ class Sidebar extends Component {
                     <Hidden smDown>
                         <Drawer
                             classes={{
-                                paper: classes.drawerPaper,
+                                paper: classNames(classes.sidebar, this.props.sidebarCollapsed && classes.sidebarCollapsed)
                             }}
                             variant="permanent"
-                            open={this.props.open}
                         >
                             <List className={classes.list}>
                                 {sidebarMenu}
