@@ -1,11 +1,14 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
+const defaultFontFamily = "\"Montserrat\", \"Helvetica\", \"Arial\", sans-serif";
+
 const Theme = createMuiTheme({
+    // shadows: ['none'],
     spacing: {
         unit: 10
     },
     font: {
-        fontFamily: "\"Lato\", \"Helvetica\", \"Arial\", sans-serif",
+        fontFamily: defaultFontFamily,
         fontSize: 14,
         fontWeight: 400,
     },
@@ -13,18 +16,18 @@ const Theme = createMuiTheme({
         useNextVariants: true,
         suppressDeprecationWarnings: true,
         htmlFontSize: 10,
-        fontFamily: "\"Lato\", \"Helvetica\", \"Arial\", sans-serif",
+        fontFamily: defaultFontFamily,
         fontSize: 14,
-        fontWeightLight: 300,
-        fontWeightRegular: 400,
-        fontWeightMedium: 500
+        fontWeightLight: 200,
+        fontWeightRegular: 300,
+        fontWeightMedium: 400
     },
     palette: {
         type: 'light',
         primary: {
-            light: '#828282',
+            light: '#8f8f8f',
             main: '#000',
-            contrastText: '#fff',
+            contrastText: '#688ea3',
         },
         secondary: {
             light: '#fff',
@@ -43,9 +46,10 @@ const Theme = createMuiTheme({
         width: 300,
         link: {
             fontSize: '18px',
-            fontFamily: "\"Lato\", \"Helvetica\", \"Arial\", sans-serif",
+            fontWeight: 300,
+            fontFamily: defaultFontFamily,
             '&:hover': {
-                fontWeight: 'bold',
+                fontWeight: 400,
                 textDecoration: 'none'
             }
         },
@@ -55,6 +59,15 @@ const Theme = createMuiTheme({
             paper: {
                 background: 'transparent',
             },
+        },
+        MuiPaper: {
+            elevation5: {
+                boxShadow: '0px 3px 5px -1px rgba(0,0,0,0.10), 0px 5px 8px 0px rgba(0,0,0,0.06), 0px 1px 14px 0px rgba(0,0,0,0.04)',
+            }
+        },
+        MuiButtonBase: {
+            // The properties to apply
+            disableRipple: true, // No more ripple, on the whole application 💣!
         },
     },
 });

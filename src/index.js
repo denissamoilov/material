@@ -10,7 +10,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import Theme from './theme/Theme';
 
 // Load Roboto typeface
-require('typeface-lato');
+require('typeface-montserrat');
 
 
 const app = (

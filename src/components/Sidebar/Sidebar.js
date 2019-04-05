@@ -24,7 +24,7 @@ const styles = theme => ({
         ...theme.sidebar.link,
     },
     sidebarLinkActive: {
-        fontWeight: 'bold'
+        fontWeight: '500'
     },
     list: {
         padding: 0,
