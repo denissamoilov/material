@@ -65,10 +65,10 @@ const Theme = createMuiTheme({
                 boxShadow: '0px 3px 5px -1px rgba(0,0,0,0.10), 0px 5px 8px 0px rgba(0,0,0,0.06), 0px 1px 14px 0px rgba(0,0,0,0.04)',
             }
         },
-        MuiButtonBase: {
-            // The properties to apply
-            disableRipple: true, // No more ripple, on the whole application 💣!
-        },
+        // MuiButtonBase: {
+        //     // The properties to apply
+        //     disableRipple: true, // No more ripple, on the whole application 💣!
+        // },
     },
 });
 

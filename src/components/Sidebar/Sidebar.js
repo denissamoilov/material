@@ -41,7 +41,7 @@ const styles = theme => ({
 
 const sideBar = (props) => {
 
-    const { classes, theme } = props;
+    const { classes } = props;
 
     const sidebarMenuObject = [
         {
@@ -86,18 +86,18 @@ const sideBar = (props) => {
     const sidebarMenu = sidebarMenuObject.map(item => {
 
         return (
-                <ListItem key={item.id}>
-                    <Link
-                        color='primary'
-                        component={NavLink}
-                        to={item.slug} 
-                        exact
-                        className={classes.sidebarLink}
-                        activeClassName={classes.sidebarLinkActive}
-                    >
-                        {item.title}
-                    </Link>
-                </ListItem>
+            <ListItem key={item.id}>
+                <Link
+                    color='primary'
+                    component={NavLink}
+                    to={item.slug} 
+                    exact
+                    className={classes.sidebarLink}
+                    activeClassName={classes.sidebarLinkActive}
+                >
+                    {item.title}
+                </Link>
+            </ListItem>
         )
     })
 

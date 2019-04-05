@@ -38,7 +38,8 @@ const styles = theme => ({
         left: 0,
         top: 0,
         '&:hover': {
-            background: 'transparent'
+            background: 'transparent',
+            color: theme.palette.primary.light
         }
     }
 });
@@ -55,14 +56,14 @@ class Layout extends Component {
     };
 
     render() {
-        const { classes, theme } = this.props;
+        const { classes } = this.props;
 
         const upLeftSvgPath = <path d="m16.7 15.1-5.9-5.9h3.6c.3 0 .6-.1.8-.3s.3-.5.3-.8c0-.6-.5-1.1-1.1-1.1h-7.4v7.3c0 .6.5 1.1 1.1 1.1s1.1-.5 1.1-1.1v-3.6l5.9 5.9c.4.4 1.1.4 1.6 0 .4-.4.4-1.1 0-1.5z"/>;
         const downRightSvgPath = <path d="m7.3 8.9 5.9 5.9h-3.5c-.3 0-.6.1-.8.3s-.3.5-.3.8c0 .6.5 1.1 1.1 1.1h7.3v-7.3c0-.6-.5-1.1-1.1-1.1s-1.1.5-1.1 1.1v3.6l-5.9-6c-.4-.4-1.1-.4-1.6 0-.4.5-.4 1.2 0 1.6z"/>;
 
         const expandIcon = this.state.sidebarCollapsed ? downRightSvgPath : upLeftSvgPath;
 
-        // console.log('props: ', this.props);
+        console.log('props: ', this.props);
 
         return (
             <>
@@ -72,7 +73,7 @@ class Layout extends Component {
 
                 <Paper 
                     className={classNames(classes.content, this.state.sidebarCollapsed && classes.contentExpanded)}
-                    elevation="5"
+                    elevation={5}
                     square>
                     <IconButton 
                         className={classes.expandButton}
