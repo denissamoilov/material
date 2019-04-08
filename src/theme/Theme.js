@@ -7,6 +7,7 @@ const Theme = createMuiTheme({
     spacing: {
         unit: 10
     },
+    gutterBottom: true,
     font: {
         fontFamily: defaultFontFamily,
         fontSize: 14,
@@ -20,7 +21,15 @@ const Theme = createMuiTheme({
         fontSize: 14,
         fontWeightLight: 200,
         fontWeightRegular: 300,
-        fontWeightMedium: 400
+        fontWeightMedium: 400,
+        h1: {
+            fontSize: 32,
+            fontWeight: 400,
+        },
+        h2: {
+            fontSize: 38,
+            fontWeight: 400,
+        }
     },
     palette: {
         type: 'light',
