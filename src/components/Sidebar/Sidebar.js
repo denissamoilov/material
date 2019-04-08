@@ -14,11 +14,15 @@ const styles = theme => ({
         width: theme.sidebar.width,
         transition: theme.transitions.create('transform', {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
+            // duration: theme.transitions.duration.leavingScreen,
         }),
+
+        [theme.breakpoints.down('sm')]: {
+            transform: `translateX(-${theme.sidebar.width}px)`,
+        },
     },
     sidebarCollapsed: {
-        transform: 'translateX(-' + theme.sidebar.width + 'px)',
+        transform: `translateX(-${theme.sidebar.width}px)`,
     },
     sidebarLink: {
         ...theme.sidebar.link,
@@ -103,23 +107,23 @@ const sideBar = (props) => {
 
     return (
         <>
-            <nav>
-                <Hidden smDown>
-                    <Drawer
-                        classes={{
-                            paper: classNames(classes.sidebar, props.sidebarCollapsed && classes.sidebarCollapsed)
-                        }}
-                        variant="permanent"
-                    >
-                        <List className={classes.list}>
-                            {sidebarMenu}
-                        </List>
-                    </Drawer>
-                    {/* <div className={classes.sidebar}>
-                        {sidebarMenu}
-                    </div> */}
-                </Hidden>
-            </nav>
+            <Hidden smDown>
+                <Drawer
+                    classes={{
+                        paper: classNames(classes.sidebar, props.sidebarCollapsed && classes.sidebarCollapsed)
+                    }}
+                    variant="permanent"
+                >
+                    <nav>
+                            <List className={classes.list}>
+                                {sidebarMenu}
+                            </List>
+                    </nav>
+                </Drawer>
+                {/* <div className={classes.sidebar}>
+                    {sidebarMenu}
+                </div> */}
+            </Hidden>
         </>
     )
 }

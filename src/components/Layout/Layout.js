@@ -17,7 +17,7 @@ const styles = theme => ({
         position: 'relative',
         transition: theme.transitions.create('margin-left', {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
+            // duration: theme.transitions.duration.leavingScreen,
         }),
 
         [theme.breakpoints.up('md')]: {

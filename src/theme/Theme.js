@@ -24,11 +24,11 @@ const Theme = createMuiTheme({
         fontWeightMedium: 400,
         h1: {
             fontSize: 32,
-            fontWeight: 400,
+            fontWeight: 300,
         },
         h2: {
             fontSize: 38,
-            fontWeight: 400,
+            fontWeight: 300,
         }
     },
     palette: {
