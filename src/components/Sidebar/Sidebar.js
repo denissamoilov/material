@@ -58,7 +58,13 @@ const sideBar = (props) => {
             id: 1,
             title: 'Content Manager',
             slug: '/manager',
-            active: false
+            active: false,
+            children: [{
+                id: 1,
+                title: 'Promotions',
+                slug: 'promotions',
+                active: false,
+            }]
         },
         {
             id: 2,
@@ -87,21 +93,26 @@ const sideBar = (props) => {
         
     ];
 
-    const sidebarMenu = sidebarMenuObject.map(item => {
+    const sidebarMenu = (array) => array.map(item => {
 
         return (
-            <ListItem key={item.id}>
-                <Link
-                    color='primary'
-                    component={NavLink}
-                    to={item.slug} 
-                    exact
-                    className={classes.sidebarLink}
-                    activeClassName={classes.sidebarLinkActive}
-                >
-                    {item.title}
-                </Link>
-            </ListItem>
+                <ListItem key={item.id}>
+                    <Link
+                        color='primary'
+                        component={NavLink}
+                        to={item.slug} 
+                        exact
+                        className={classes.sidebarLink}
+                        activeClassName={classes.sidebarLinkActive}
+                    >
+                        {item.title}
+                    </Link>
+                    {(item.children !== undefined) ? (
+                        <List className={classes.list}>
+                            {sidebarMenu(item.children)}
+                        </List>
+                    ): null}
+                </ListItem>
         )
     })
 
@@ -115,9 +126,9 @@ const sideBar = (props) => {
                     variant="permanent"
                 >
                     <nav>
-                            <List className={classes.list}>
-                                {sidebarMenu}
-                            </List>
+                        <List className={classes.list}>
+                            {sidebarMenu(sidebarMenuObject)}
+                        </List>
                     </nav>
                 </Drawer>
                 {/* <div className={classes.sidebar}>
