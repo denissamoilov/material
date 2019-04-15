@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { NavLink } from 'react-router-dom'
 
-import { Drawer, List, ListItem, Link, Hidden } from '@material-ui/core';
+import { Drawer, List, ListItem, Link, Hidden, Collapse } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -27,7 +27,15 @@ const styles = theme => ({
     sidebarLink: {
         ...theme.sidebar.link,
     },
+    sidebarSubLink: {
+        ...theme.sidebar.link,
+        color: theme.palette.primary.light,
+        fontSize: 16,
+        padding: '0 ' + theme.spacing.unit * 2 + 'px',
+        fontWeight: 400,
+    },
     sidebarLinkActive: {
+        color: theme.palette.primary.main,
         fontWeight: '500'
     },
     list: {
@@ -108,9 +116,11 @@ const sideBar = (props) => {
                         {item.title}
                     </Link>
                     {(item.children !== undefined) ? (
-                        <List className={classes.list}>
-                            {sidebarMenu(item.children)}
-                        </List>
+                        <Collapse in={false} timeout="auto" unmountOnExit>
+                            <List className={classes.list}>
+                                {sidebarMenu(item.children)}
+                            </List>
+                        </Collapse>
                     ): null}
                 </ListItem>
         )
