@@ -70,7 +70,7 @@ const sideBar = (props) => {
             children: [{
                 id: 1,
                 title: 'Promotions',
-                slug: 'promotions',
+                slug: '/manager/promotions',
                 active: false,
             }]
         },
