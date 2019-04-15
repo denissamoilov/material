@@ -10,6 +10,7 @@ import AssetsManager from './containers/AssetsManager/AssetsManager';
 import ContentPersonalization from './containers/ContentPersonalization/ContentPersonalization';
 import ContentManager from './containers/ContentManager/ContentManager';
 import Promotions from './containers/ContentManager/Promotions/Promotions';
+import PromotionBuilder from './containers/ContentManager/Promotions/PromotionBuilder/PromotionBuilder';
 import Dashboard from './containers/Dashboard/Dashboard';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
                         <Route path="/settings" exact component={SiteSettings} />
                         <Route path="/site-manager" exact component={SiteManager} />
                         <Route path="/manager/promotions" exact component={Promotions} />
+                        <Route path="/manager/promotions/add" exact component={PromotionBuilder} />
                         <Route path="/assets" exact component={AssetsManager} />
                         <Route path="/personalization" exact component={ContentPersonalization} />
                         <Route path="/manager" exact component={ContentManager} />

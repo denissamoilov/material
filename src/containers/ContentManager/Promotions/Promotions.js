@@ -3,6 +3,11 @@ import { Link as RouterLink } from 'react-router-dom'
 import { Typography, Link } from '@material-ui/core';
 
 class Promotions extends Component {
+
+    state = {
+        promotions: []
+    }
+
     render() {
         return (
             <>
