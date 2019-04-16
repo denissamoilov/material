@@ -109,14 +109,13 @@ const sideBar = (props) => {
                         color='primary'
                         component={NavLink}
                         to={item.slug} 
-                        exact
                         className={classes.sidebarLink}
                         activeClassName={classes.sidebarLinkActive}
                     >
                         {item.title}
                     </Link>
                     {(item.children !== undefined) ? (
-                        <Collapse in={false} timeout="auto" unmountOnExit>
+                        <Collapse in={true} timeout="auto" unmountOnExit>
                             <List className={classes.list}>
                                 {sidebarMenu(item.children)}
                             </List>

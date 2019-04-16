@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react';
 
 import { Typography } from '@material-ui/core';
 
-class PromotionBuilder extends Component {
-    render() {
-        return (
-            <Typography variant="h1">Edit Promotion</Typography>
-        )
-    }
+const promotionBuilder = ({ match }) => {
+    console.log('lala: ', match.params.action);
+    const actionString = match.params.action;
+    return (
+        <Typography variant="h1">{actionString} Promotion</Typography>
+    )
 }
 
-export default PromotionBuilder;
+export default promotionBuilder;

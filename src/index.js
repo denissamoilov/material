@@ -12,7 +12,7 @@ import * as serviceWorker from './serviceWorker';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import Theme from './theme/Theme';
 
-import promotionReducer from './store/reducers/promotionReducer';
+import promotionReducer from './store/reducers/promotionBuilderReducer';
 
 // Load Roboto typeface
 require('typeface-montserrat');

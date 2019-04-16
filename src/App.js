@@ -9,17 +9,10 @@ import SiteManager from './containers/SiteManager/SiteManager';
 import AssetsManager from './containers/AssetsManager/AssetsManager';
 import ContentPersonalization from './containers/ContentPersonalization/ContentPersonalization';
 import ContentManager from './containers/ContentManager/ContentManager';
-import Promotions from './containers/ContentManager/Promotions/Promotions';
-import PromotionBuilder from './containers/ContentManager/Promotions/PromotionBuilder/PromotionBuilder';
 import Dashboard from './containers/Dashboard/Dashboard';
+// import Child from './containers/Child/Child';
 
 class App extends Component {
-    state = {
-        currentItem: {
-            path: '/manager',
-            component: 'SiteManager'
-        }
-    };
 
     render() {
         return (
@@ -27,14 +20,13 @@ class App extends Component {
                 <CssBaseline />
                 <Layout>
                     <Switch>
+                        {/* <Route path="/:slug" component={Child}/> */}
                         {/* <Route path={this.state.currentItem.path} exact component={this.state.currentItem.component} /> */}
                         <Route path="/settings" exact component={SiteSettings} />
                         <Route path="/site-manager" exact component={SiteManager} />
-                        <Route path="/manager/promotions" exact component={Promotions} />
-                        <Route path="/manager/promotions/add" exact component={PromotionBuilder} />
                         <Route path="/assets" exact component={AssetsManager} />
+                        <Route path="/manager" component={ContentManager} />
                         <Route path="/personalization" exact component={ContentPersonalization} />
-                        <Route path="/manager" exact component={ContentManager} />
                         <Route path="/" exact component={Dashboard} />
                     </Switch>
                 </Layout>
