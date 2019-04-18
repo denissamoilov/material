@@ -21,6 +21,16 @@ class Promotions extends Component {
         }]
     }
 
+    fetchPromotions = () => {
+        return console.log('Fetching Promotions!')
+        
+    }
+
+    componentDidMount() {
+        console.log('Promotions did mount!');
+        this.fetchPromotions();
+    }
+
     render() {
         return (
             <PromotionsProvider value={this.state}>
