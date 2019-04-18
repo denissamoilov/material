@@ -5,7 +5,6 @@ const initialState = {
 }
 
 const addPromotion = (state, action) => {
-    console.log('lala');
     return {
         ...state,
     }

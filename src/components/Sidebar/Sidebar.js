@@ -38,6 +38,10 @@ const styles = theme => ({
         color: theme.palette.primary.main,
         fontWeight: '500'
     },
+    menuListItem: {
+        flexFlow: 'column nowrap',
+        alignItems: 'flex-start'
+    },
     list: {
         padding: 0,
     },
@@ -104,7 +108,8 @@ const sideBar = (props) => {
     const sidebarMenu = (array) => array.map(item => {
 
         return (
-                <ListItem key={item.id}>
+                <ListItem key={item.id} 
+                    className={classes.menuListItem}>
                     <Link
                         color='primary'
                         component={NavLink}
