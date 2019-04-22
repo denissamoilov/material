@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Card, CardContent, CardActions, Button } from '@material-ui/core';
 
 const promotionCard = (props) => {
+    console.log('props card: ', props);
     return (
         <Card>
             <CardContent>
@@ -9,7 +10,7 @@ const promotionCard = (props) => {
                 <Typography gutterBottom>{props.description}</Typography>
                 <Typography gutterBottom>{props.price}</Typography>
                 <CardActions>
-                    <Button size="small">Learn More</Button>
+                    <Button component="a" href={"/manager/promotions/" + props.id} size="small">Learn More</Button>
                 </CardActions>
             </CardContent>
         </Card>
