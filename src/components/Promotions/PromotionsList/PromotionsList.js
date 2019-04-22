@@ -1,24 +1,28 @@
 import React from 'react';
+import { List, ListItem } from '@material-ui/core';
 
-import { PromotionsConsumer } from '../../../contexts/PromotionsContext';
+import { Consumer } from '../../../contexts/context';
+
+import PromotionCard from '../PromotionCard/PromotionCard';
 
 const promotionList = () => {
     return (
-        <PromotionsConsumer>
+        <Consumer>
             {context => (
                 <>
                     <h4>Promotions List:</h4>
-                    <ul>
+                    <List>
                         {context.promotions.map(promo => {
                             return (
-                                <li key={promo.id}>{promo.name} - <strong>{promo.price}</strong></li>
+                                <ListItem key={promo.id}>
+                                    <PromotionCard title={promo.title} description={promo.description} price={promo.price} />
+                                </ListItem>
                             )
                         })}
-                    {console.log('list :: context :: ', context)}
-                    </ul>
+                    </List>
                 </>
             )}
-        </PromotionsConsumer>
+        </Consumer>
     )
 }
 

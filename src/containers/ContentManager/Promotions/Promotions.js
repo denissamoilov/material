@@ -1,41 +1,75 @@
 import React, { Component } from 'react';
-import { PromotionsProvider } from '../../../contexts/PromotionsContext';
+import axios from '../../../axios';
+
+import { Provider } from '../../../contexts/context';
 
 class Promotions extends Component {
 
     state = {
-        promotions: [{
-            id: 1,
-            name: 'Promo 1',
-            price: 150
-        },
-        {
-            id: 2,
-            name: 'Promo 2',
-            price: 250
-        },
-        {
-            id: 3,
-            name: 'Promo 3',
-            price: 350
-        }]
+        // promotions: [{
+        //     id: 1,
+        //     name: 'Promo 1',
+        //     price: 150
+        // },
+        // {
+        //     id: 2,
+        //     name: 'Promo 2',
+        //     price: 250
+        // },
+        // {
+        //     id: 3,
+        //     name: 'Promo 3',
+        //     price: 350
+        // }],
+        promotions: [],
+        updated: false
     }
 
     fetchPromotions = () => {
-        return console.log('Fetching Promotions!')
+        axios.get('/promotions.json')
+            .then(response => {
+                const fetchedPromotions = [];
+
+                console.log('lala');
+
+                for(let key in response.data) {
+                    fetchedPromotions.push({
+                        ...response.data[key],
+                        id: key
+                    })
+                }
+
+                this.setState({
+                    promotions: fetchedPromotions,
+                    updated: false
+                })
+            })
+            .catch(error => {
+                console.log('promotions error :: ', error);
+            })
         
     }
 
     componentDidMount() {
-        console.log('Promotions did mount!');
+        console.log('Promotions did mount!', this.state);
         this.fetchPromotions();
     }
 
+    // componentDidUpdate(prevProps, prevState) {
+    //     // console.log('Promotions did update :: prevProps :: ', prevProps);
+    //     // console.log('Promotions did update :: prevState :: ', prevState);
+    //     console.log('Promotions did update :: this.state :: ', this.state);
+    //     // if(prevState.updated !== this.state.updated) {
+    //         this.fetchPromotions();
+    //     // }
+    // }
+
     render() {
+        console.log('this.state.updated :: ', this.state.updated);
         return (
-            <PromotionsProvider value={this.state}>
+            <Provider value={this.state}>
                 {this.props.children}
-            </PromotionsProvider>
+            </Provider>
         )
     }
 }
