@@ -6,41 +6,48 @@ import { Provider } from '../../../contexts/context';
 class Promotions extends Component {
 
     state = {
-        promotions: [],
+        // promotions: [],
         updated: false
     }
 
-    updatePromotions = (newData) => {
-        axios.post('/promotions.json', newData)
-        .then(response => {
-            // this.props.history.replace('/manager/promotions');
-            this.setState({updated: true})
-            this.props.history.push('/manager/promotions');
-        });
-    }
+    // addPromotion = (newData) => {
+    //     axios.post('/promotions.json', newData)
+    //     .then(response => {
+    //         this.setState({updated: true})
+    //         this.props.history.push('/manager/promotions');
+    //     });
+    // }
 
-    fetchPromotions = () => {
-        console.log('history :: ', this);
-        axios.get('/promotions.json')
+    fetchPromotions = async uid => {
+        const url = (uid) ? '/promotions/' + uid : '/promotions.json'
+        axios.get(url)
             .then(response => {
                 const fetchedPromotions = [];
 
+                let counter = 0;
+
                 for(let key in response.data) {
+
                     fetchedPromotions.push({
                         ...response.data[key],
-                        id: key
-                    })
+                        uid: key,
+                        id: counter
+                    });
+                    counter++;
                 }
 
-                this.setState({
-                    promotions: fetchedPromotions,
-                    updated: false
-                })
+                // console.log('fetchedPromotions: ', fetchedPromotions[0]);
+
+                // this.setState({
+                //     promotions: fetchedPromotions,
+                //     updated: false
+                // })
+
+                return fetchedPromotions;
             })
             .catch(error => {
                 console.log('promotions error :: ', error);
             })
-        
     }
 
     componentDidMount() {
@@ -61,7 +68,7 @@ class Promotions extends Component {
         return (
             <Provider value={{
                 state: this.state,
-                updatePromotions: this.updatePromotions
+                fetchPromotions: this.fetchPromotions
             }}>
                 {this.props.children}
             </Provider>
