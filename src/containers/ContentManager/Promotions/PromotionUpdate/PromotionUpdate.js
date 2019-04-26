@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from '../../../../axios';
 import { withContext } from '../../../../hoc/withContext/withContext';
 
 class PromotionUpdate extends Component {
@@ -10,29 +9,20 @@ class PromotionUpdate extends Component {
         price: ''
     }
 
-    addPromotion = (data) => {
-        axios.post('/promotions.json', data)
-            .then(response => {
-                this.props.setState({updated: true})
-                this.props.history.push('/manager/promotions');
-            });
-    }
-
     componentDidMount() {
-        const promoId = this.props.match.params.id;
+        const promoId = this.props.match.params.uid;
 
-        console.log('current promo data: ', this.props.state.promotions);
-
-        // if(typeof promoId !== "undefined") {
-        //     this.setState({
-        //         ...this.state,
-        //         ...this.props.state.promotions[promoId]
-        //     })
-        // }
+        if ( promoId !== 'add' ) {
+            this.props.asyncFetch().then(response => {
+                this.setState({
+                    ...response.data[promoId]
+                })
+            })
+        }
     }
 
     componentDidUpdate() {
-        console.log('componentDidUpdate(): ', this.props.state.promotions);
+        console.log('componentDidUpdate(): ', this.props.contextState.promotions);
     }
     
     render() {
@@ -45,7 +35,7 @@ class PromotionUpdate extends Component {
                 <textarea rows="4" value={this.state.description} onChange={(event) => this.setState({description: event.target.value})} />
                 <label>Price</label>
                 <input type="text" value={this.state.price} onChange={(event) => this.setState({price: event.target.value})} />
-                <button onClick={() => this.addPromotion(this.state)}>Add Post</button>
+                <button onClick={() => this.props.addPromotion(this.state)}>Add Post</button>
             </>
         )
     }

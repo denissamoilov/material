@@ -17,7 +17,7 @@ const contentManager = (props) => {
                 <Typography variant="h1">Promotions</Typography>
                 <Link component={RouterLink} to="/manager/promotions/add/" color="primary">Add Promotion</Link>
                 <Switch>
-                    <Route path="/manager/promotions/:id" exact component={PromotionUpdate} />
+                    <Route path="/manager/promotions/:uid" exact component={PromotionUpdate} />
                     <Route path="/manager/promotions/add" exact component={PromotionUpdate} />
                     <Route path="/manager/promotions/" exact component={PromotionsList} />
                 </Switch>
